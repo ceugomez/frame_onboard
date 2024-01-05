@@ -1,15 +1,24 @@
 [submodule "src/lightwarelidar2"]
 	path = src/lightwarelidar2
 	url = https://github.com/LightWare-Optoelectronics/lightwarelidar2.git
+	branch=master
 [submodule "src/perception_pcl"]
 	path = src/perception_pcl
 	url = git@github.com:ros-perception/perception_pcl.git
+	branch = ros2
 [submodule "src/pcl_msgs"]
 	path = src/pcl_msgs
 	url = git@github.com:ros-perception/pcl_msgs.git
+	branch = ros2
 [submodule "src/vision_opencv"]
 	path = src/vision_opencv
 	url = git@github.com:ros-perception/vision_opencv.git
+	branch=foxy
 [submodule "src/xacro"]
 	path = src/xacro
 	url = git@github.com:ros/xacro.git
+	branch = ros2
+[submodule "src/LIO-SAM"]
+	path = src/LIO-SAM
+	url = git@github.com:TixiaoShan/LIO-SAM.git
+	branch = ros2
