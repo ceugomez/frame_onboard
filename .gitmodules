@@ -6,5 +6,5 @@
 	path = src/bno055
 	url = https://github.com/flynneva/bno055.git
 [submodule "ublox"]
-	path = ublox
+	path = src/ublox
 	url = https://github.com/KumarRobotics/ublox.git
