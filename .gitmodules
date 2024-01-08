@@ -1,11 +1,3 @@
-[submodule "src/lightwarelidar2"]
-	path = src/lightwarelidar2
-	url = https://github.com/LightWare-Optoelectronics/lightwarelidar2.git
-	branch=master
 [submodule "src/bno055"]
 	path = src/bno055
 	url = https://github.com/flynneva/bno055.git
-
-[submodule "src/ublox"]
-	path = src/ublox
-	url = https://github.com/KumarRobotics/ublox.git
