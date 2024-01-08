@@ -4,4 +4,4 @@
 [submodule "src/ublox"]
 	path = src/ublox
 	url = https://github.com/KumarRobotics/ublox.git
-	branch=foxy-devel
+	branch = foxy-devel
