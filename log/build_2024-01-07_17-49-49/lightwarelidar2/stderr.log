@@ -1,0 +1,4 @@
+[01m[K/home/ceu/Desktop/nodes-onboard/src/lightwarelidar2/src/lwNx.cpp:[m[K In function ‘[01m[Kbool lwnxRecvPacket(lwSerialPort*, uint8_t, lwResponsePacket*, uint32_t)[m[K’:
+[01m[K/home/ceu/Desktop/nodes-onboard/src/lightwarelidar2/src/lwNx.cpp:104:35:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint32_t[m[K’ {aka ‘[01m[Kint[m[K’} and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  104 |  while (([01;35m[KplatformGetMillisecond() < timeoutTime[m[K) && (bytesRead = Serial->readData(&byte, 1)) != -1) {
+      |          [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~[m[K

@@ -1,0 +1,14 @@
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/install/strip.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/sf45b.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/lightwarelidar2_uninstall.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/lwNx.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/platformLinux.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/serialPortLinux.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/sf40c.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/uninstall.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/test.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/edit_cache.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/rebuild_cache.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/list_install_components.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/install.dir
+/home/ceu/Desktop/nodes-onboard/build/lightwarelidar2/CMakeFiles/install/local.dir
