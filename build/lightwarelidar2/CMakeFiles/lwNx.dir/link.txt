@@ -1,2 +1,0 @@
-/usr/bin/ar qc liblwNx.a  CMakeFiles/lwNx.dir/src/lwNx.cpp.o
-/usr/bin/ranlib liblwNx.a
