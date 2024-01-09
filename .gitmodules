@@ -1,10 +1,6 @@
 [submodule "src/bno055"]
 	path = src/bno055
 	url = https://github.com/flynneva/bno055.git
-[submodule "src/ublox"]
-	path = src/ublox
-	url = https://github.com/KumarRobotics/ublox.git
-	branch = foxy-devel
 [submodule "src/lightwarelidar2"]
 	path = src/lightwarelidar2
-	url = git@github.com:ceugomez/lightwarelidar2.git
+	url = https://github.com.com/ceugomez/lightwarelidar2.git
