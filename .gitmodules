@@ -5,9 +5,6 @@
 	path = src/ublox
 	url = https://github.com/KumarRobotics/ublox.git
 	branch = foxy-devel
-[submodule "src/lightware-onboard"]
-	path = src/lightware-onboard
-	url = git@github.com:ceugomez/lightware-onboard.git
 [submodule "src/lightwarelidar2"]
 	path = src/lightwarelidar2
 	url = git@github.com:ceugomez/lightwarelidar2.git
