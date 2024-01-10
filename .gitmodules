@@ -1,6 +1,4 @@
 [submodule "src/bno055"]
 	path = src/bno055
 	url = https://github.com/flynneva/bno055.git
-[submodule "src/lightwarelidar2"]
-	path = src/lightwarelidar2
-	url = https://github.com.com/ceugomez/lightwarelidar2.git
+
