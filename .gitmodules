@@ -2,3 +2,6 @@
 	path = src/bno055
 	url = https://github.com/flynneva/bno055.git
 
+[submodule "tools/px4_msgs"]
+	path = tools/px4_msgs
+	url = git@github.com:PX4/px4_msgs.git

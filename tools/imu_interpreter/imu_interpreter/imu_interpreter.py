@@ -51,12 +51,12 @@ class imuPub(Node):
             10)
     
     def sensor_listener_callback(self, msg):
-        self.get_logger().info('Sensor message received: "%s"' % msg.data)
+        self.get_logger().info('Sensor message received with timestamp: "%s"' % msg.timestamp)
         self.sensor_msg_recvd = True
         self.sensor_msg = msg
         
     def attitude_listener_callback(self, msg):
-        self.get_logger().info('Attitude message received: "%s"' % msg.data)
+        self.get_logger().info('Attitude message received with timestamp: "%s"' % msg.timestamp)
         self.attitude_msg_recvd = True
         self.attitude_msg = msg
 
