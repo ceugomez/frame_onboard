@@ -16,12 +16,23 @@ import rclpy
 from rclpy.node import Node
 from time import sleep
 import sys
+
+from geometry_msgs.msg import Vector3
+from geometry_msgs.msg import Quaternion
+
 from std_msgs.msg import String
+
 from sensor_msgs.msg import Imu
+
 from px4_msgs.msg import SensorCombined
 from px4_msgs.msg import VehicleAttitude
 from rclpy.qos import QoSProfile 
 from rclpy.node import Node
+
+# Can be used when we don't have exact values
+DEFAULT_COVARIANCE_MATRIX = [0.0001, 0.0, 0.0,
+                             0.0, 0.0001, 0.0,
+                             0.0, 0.0, 0.0001]
 
 class imuPub(Node):
 
@@ -35,6 +46,8 @@ class imuPub(Node):
         self.timer = self.create_timer(timer_period, self.real_imu_check_messages)
         self.i = 0
         self.publish_dummy_imu_data = False
+
+        self.imu_msg = Imu()
         
         self.sensor_msg = None
         self.sensor_msg_recvd = False
@@ -62,9 +75,37 @@ class imuPub(Node):
 
     def real_imu_check_messages(self):
         if self.sensor_msg_recvd and self.attitude_msg_recvd:
-            self.get_logger().info('Received attitude and sensor data! (Did nothing with it)')
+            self.get_logger().info('Received attitude and sensor data!')
+
+            # Populate the IMU message
+            self.imu_msg.header.stamp = self.get_clock().now().to_msg()
+            self.imu_msg.header.frame_id = "imu_frame"
+
+            # Populate orientation, angular velocity, and linear acceleration
+            self.imu_msg.orientation = Quaternion()
+            self.imu_msg.orientation.x = float(self.attitude_msg.q[0])
+            self.imu_msg.orientation.y = float(self.attitude_msg.q[1])
+            self.imu_msg.orientation.z = float(self.attitude_msg.q[2])
+            self.imu_msg.orientation.w = float(self.attitude_msg.q[3])
+            self.imu_msg.orientation_covariance = DEFAULT_COVARIANCE_MATRIX
+
+            self.imu_msg.angular_velocity = Vector3()
+            self.imu_msg.angular_velocity.x = float(self.sensor_msg.gyro_rad[0])
+            self.imu_msg.angular_velocity.y = float(self.sensor_msg.gyro_rad[1])
+            self.imu_msg.angular_velocity.z = float(self.sensor_msg.gyro_rad[2])
+            self.imu_msg.angular_velocity_covariance = DEFAULT_COVARIANCE_MATRIX
+
+            self.imu_msg.linear_acceleration = Vector3()
+            self.imu_msg.linear_acceleration.x = float(self.sensor_msg.accelerometer_m_s2[0])
+            self.imu_msg.linear_acceleration.y = float(self.sensor_msg.accelerometer_m_s2[1])
+            self.imu_msg.linear_acceleration.z = float(self.sensor_msg.accelerometer_m_s2[2])
+            self.imu_msg.linear_acceleration_covariance = DEFAULT_COVARIANCE_MATRIX
+
+            # Publish the IMU message
+            self.publisher_.publish(self.imu_msg)
             self.sensor_msg_recvd = False
             self.attitude_msg_recvd = False
+
 
     def dummy_data_timer_callback(self):
         if self.publish_dummy_imu_data:
