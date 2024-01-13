@@ -20,14 +20,15 @@ import sys
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import Quaternion
 
+from px4_msgs.msg import SensorCombined
+from px4_msgs.msg import VehicleAttitude
+
+from rclpy.qos import QoSProfile, HistoryPolicy, ReliabilityPolicy, DurabilityPolicy
+from rclpy.node import Node
+
 from std_msgs.msg import String
 
 from sensor_msgs.msg import Imu
-
-from px4_msgs.msg import SensorCombined
-from px4_msgs.msg import VehicleAttitude
-from rclpy.qos import QoSProfile 
-from rclpy.node import Node
 
 # Can be used when we don't have exact values
 DEFAULT_COVARIANCE_MATRIX = [0.0001, 0.0, 0.0,
@@ -38,9 +39,20 @@ class imuPub(Node):
 
     def __init__(self):
         super().__init__('imuPub')
-        QoSPfl = QoSProfile(depth=10)
-        self.publisher_ = self.create_publisher(Imu, 'imu_data', QoSPfl)
-        timer_freq = 50 #100 #hz
+
+        # NOTE: In order for our subscribers to pick up topics from the PX4, we must match the
+        # quality of service settings. This profile was tested to work with the PX4 in the simulator.
+        # Do NOT change this profile without first ensuring compatibility:
+        #     https://github.com/ros2/rmw/blob/foxy/rmw/include/rmw/qos_profiles.h
+        #     https://docs.ros.org/en/foxy/Concepts/About-Quality-of-Service-Settings.html?highlight=quality
+        qos_profile = QoSProfile(
+            history=HistoryPolicy.KEEP_LAST,
+            depth=5,
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            durability=DurabilityPolicy.VOLATILE)
+
+        self.publisher_ = self.create_publisher(Imu, '/imu_data', qos_profile=qos_profile)
+        timer_freq = 50 # Hz
         timer_period = 1/timer_freq  # seconds
         # self.timer = self.create_timer(timer_period, self.dummy_data_timer_callback)
         self.timer = self.create_timer(timer_period, self.real_imu_check_messages)
@@ -49,19 +61,20 @@ class imuPub(Node):
 
         self.imu_msg = Imu()
         
+        # NOTE: do NOT change the QoS profiles without ensuring compatibility with PX4
         self.sensor_msg = None
         self.sensor_msg_recvd = False
         self.subscription = self.create_subscription(SensorCombined,
             '/fmu/out/sensor_combined',
             self.sensor_listener_callback,
-            10)
+            qos_profile=qos_profile)
         
         self.attitude_msg = None
         self.attitude_msg_recvd = False
         self.subscription = self.create_subscription(VehicleAttitude,
             '/fmu/out/vehicle_attitude',
             self.attitude_listener_callback,
-            10)
+            qos_profile=qos_profile)
     
     def sensor_listener_callback(self, msg):
         self.get_logger().info('Sensor message received with timestamp: "%s"' % msg.timestamp)
